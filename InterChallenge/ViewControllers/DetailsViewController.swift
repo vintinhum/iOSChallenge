@@ -1,17 +1,33 @@
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, Coordinating {
+    
+    var coordinator: Coordinator?
     
     var detailImageView: UIImageView = .detailPhotoImageView()
     var nameLabel: UILabel = .regularLabel(17, textColor: .black, numberOfLines: 0)
     
-    var photo = UIImage()
-    var name = String()
+    var photo: UIImage?
+    var name: String?
+    
+    init(photo: UIImage, name: String) {
+        self.photo = photo
+        self.name = name
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         UINavigationBar.appearance().isTranslucent = true
         navigationItem.title = "Detalhes"
+        
+        view.backgroundColor = .white
+        
         detailImageView.image = photo
         nameLabel.text = name
         

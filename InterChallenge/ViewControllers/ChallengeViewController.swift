@@ -1,7 +1,9 @@
 import Alamofire
 import UIKit
 
-class ChallengeViewController: UITableViewController {
+class ChallengeViewController: UITableViewController, Coordinating {
+    
+    var coordinator: Coordinator?
 
     let userViewModel = UserViewModel()
     
@@ -52,33 +54,12 @@ extension ChallengeViewController {
 // MARK: - Navigation
 
 extension ChallengeViewController: UserTableViewCellDelegate {
- 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationVC = segue.destination as? AlbumTableViewController {
-            if let info = sender as? (id: Int, name: String) {
-                destinationVC.userId = info.id
-                destinationVC.userName = info.name
-            }
-        }
-
-        if let destinationVC = segue.destination as? PostTableViewController {
-            if let info = sender as? (id: Int, name: String) {
-                destinationVC.userId = info.id
-                destinationVC.userName = info.name
-            }
-        }
-    }
     
     func didTapAlbums(with userId: Int, by name: String) {
-        let userIdAndName = (id: userId, name: name)
-        performSegue(withIdentifier: "challengeToAlbum", sender: userIdAndName)
-//        coordinator?.eventOccurred(with: .didTapAlbums)
-        
+        coordinator?.goToAlbums(userId: userId, userName: name)
     }
     
     func didTapPosts(with userId: Int, by name: String) {
-        let userIdAndName = (id: userId, name: name)
-        performSegue(withIdentifier: "challengeToPost", sender: userIdAndName)
-//        coordinator?.eventOccurred(with: .didTapPosts)
+        coordinator?.goToPosts(userId: userId, userName: name)
     }
 }

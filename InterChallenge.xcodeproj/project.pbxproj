@@ -31,6 +31,8 @@
 		BA93F7F82632035A00CE8AFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA93F7F62632035A00CE8AFF /* LaunchScreen.storyboard */; };
 		BA93F8032632035A00CE8AFF /* InterChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93F8022632035A00CE8AFF /* InterChallengeTests.swift */; };
 		BA93F80E2632035A00CE8AFF /* InterChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93F80D2632035A00CE8AFF /* InterChallengeUITests.swift */; };
+		EF0C0B0027175595006347A4 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C0AFF27175595006347A4 /* Coordinator.swift */; };
+		EF0C0B09271755A2006347A4 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C0B08271755A2006347A4 /* MainCoordinator.swift */; };
 		EF7AF2F3271084400022199F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7AF2F2271084400022199F /* UIView.swift */; };
 		EF7AF2F5271086AD0022199F /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7AF2F4271086AD0022199F /* UILabel.swift */; };
 		EF7AF2F72710B35D0022199F /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7AF2F62710B35D0022199F /* UIButton.swift */; };
@@ -152,6 +154,8 @@
 		BA93F8092632035A00CE8AFF /* InterChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA93F80D2632035A00CE8AFF /* InterChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterChallengeUITests.swift; sourceTree = "<group>"; };
 		BA93F80F2632035A00CE8AFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF0C0AFF27175595006347A4 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EF0C0B08271755A2006347A4 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EF7AF2F2271084400022199F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		EF7AF2F4271086AD0022199F /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		EF7AF2F62710B35D0022199F /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		BA93F7EA2632035800CE8AFF /* InterChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				EF0C0B08271755A2006347A4 /* MainCoordinator.swift */,
+				EF0C0AFF27175595006347A4 /* Coordinator.swift */,
 				BA0CF8BF2632F7CD007BDFC8 /* Models */,
 				BA0CF8C626334817007BDFC8 /* ViewControllers */,
 				EF7CB07B2713A82600DA5A20 /* ViewModels */,
@@ -549,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF7CB0832713B9FD00DA5A20 /* PostViewModel.swift in Sources */,
+				EF0C0B09271755A2006347A4 /* MainCoordinator.swift in Sources */,
 				BA0CF8FE26337023007BDFC8 /* Photo.swift in Sources */,
 				EF7CB07D2713A89D00DA5A20 /* UserViewModel.swift in Sources */,
 				BA0CF8F526336DB5007BDFC8 /* PhotoTableViewCell.swift in Sources */,
@@ -556,6 +563,7 @@
 				EF7CB07F2713B77900DA5A20 /* AlbumViewModel.swift in Sources */,
 				BA0CF8C12632F7E3007BDFC8 /* User.swift in Sources */,
 				BA0CF8EB26336B40007BDFC8 /* AlbumTableViewController.swift in Sources */,
+				EF0C0B0027175595006347A4 /* Coordinator.swift in Sources */,
 				BA0CF8B92632F566007BDFC8 /* UserTableViewCell.swift in Sources */,
 				BA0CF8D626334FF0007BDFC8 /* CommentTableViewController.swift in Sources */,
 				EF7AF2F5271086AD0022199F /* UILabel.swift in Sources */,

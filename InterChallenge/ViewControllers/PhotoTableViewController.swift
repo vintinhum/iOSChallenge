@@ -1,24 +1,36 @@
 import Alamofire
 import UIKit
 
-class PhotoTableViewController: UITableViewController {
+class PhotoTableViewController: UITableViewController, Coordinating {
+    
+    var coordinator: Coordinator?
 
     let photoViewModel = PhotoViewModel()
     
-    var albumId = Int()
-    var userName = String()
+    var albumId: Int?
+    var userName: String?
     var photos = [Photo]()
+    
+    init(albumId: Int, userName: String) {
+        self.albumId = albumId
+        self.userName = userName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Fotos de \(userName)"
+        navigationItem.title = "Fotos de \(userName!)"
         
         tableView.dataSource = self
         tableView.register(PhotoTableViewCell.self, forCellReuseIdentifier: "PhotoCell")
         tableView.rowHeight = 173
         
-        photoViewModel.fillPhotos(from: albumId, completion: { data in
+        photoViewModel.fillPhotos(from: albumId!, completion: { data in
             self.photos = data
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -35,7 +47,6 @@ extension PhotoTableViewController {
         return photos.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoTableViewCell
 
@@ -58,8 +69,7 @@ extension PhotoTableViewController {
         AF.download(photo.url).responseData { response in
             switch response.result {
             case .success(let data):
-                self.performSegue(withIdentifier: "photoToDetail",
-                                  sender: (photo: UIImage(data: data), name: photo.title))
+                self.coordinator?.goToDetails(photo: UIImage(data: data)!, name: photo.title)
             default:
                 break
             }
@@ -67,15 +77,3 @@ extension PhotoTableViewController {
     }
 }
 
-// MARK: - Navigation
-
-extension PhotoTableViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinatinVC = segue.destination as? DetailsViewController {
-            if let info = sender as? (photo: UIImage, name: String) {
-                destinatinVC.photo = info.photo
-                destinatinVC.name = info.name
-            }
-        }
-    }
-}

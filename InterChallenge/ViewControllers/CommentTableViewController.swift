@@ -1,25 +1,37 @@
 import Alamofire
 import UIKit
 
-class CommentTableViewController: UITableViewController {
+class CommentTableViewController: UITableViewController, Coordinating {
 
+    var coordinator: Coordinator?
+    
     let commentViewModel = CommentViewModel()
     
-    var userName: String = String()
-    var postId: Int = Int()
+    var userName: String?
+    var postId: Int?
     var comments = [Comment]()
-
+    
+    init(userName: String, postId: Int) {
+        self.userName = userName
+        self.postId = postId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Comentários de \(userName)"
+        navigationItem.title = "Comentários de \(userName!)"
         
         tableView.dataSource = self
         tableView.register(TitleAndDescriptionTableViewCell.self, forCellReuseIdentifier: "TitleAndDescriptionCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         
-        commentViewModel.fillComments(from: postId, completion: { data in
+        commentViewModel.fillComments(from: postId!, completion: { data in
             self.comments = data
             DispatchQueue.main.async {
                 self.tableView.reloadData()
